@@ -78,11 +78,13 @@ Study how the Linux kernel prepares the initial stack layout:
 - Stack layout at program startup
 - How `argc` and `argv` are extracted from the stack
 - The role of the ELF auxiliary vector
-- AArch64 calling conventions and register usage
+- AArch64 calling conventions and register usage. I will 100% quiz you on this. I REPEAT. I WILL QUIZ YOU ON THIS 
+
+
 
 ### Step 2: Complete the Syscall Framework (`syscall_utils.h`) - REQUIRED
 
-This is the **core requirement** of the assignment. You must implement the missing syscall infrastructure before proceeding to any programming problems.
+This is the **core requirement** of the assignment. You must implement the missing syscall wrappers before proceeding to any programming problems.
 
 #### What's Provided
 
@@ -139,9 +141,9 @@ Since you cannot use standard library functions, you must implement basic C libr
 
 You have **permission to research and adapt existing implementations** from online sources. However:
 
-- **Mandatory Practice**: You must implement `memcpy()` and `strlen()` yourself as practice. I will quiz you on this.
-- **Other Functions**: For remaining functions, you may adapt implementations from reliable sources (read as you can copy and paste :-) )
-- **Citation**: Comment your code with the source if you adapt existing implementations
+- You must implement `memcpy()` and `strlen()` yourself as practice. I will quiz you on this.
+- For remaining functions, you may adapt implementations from reliable sources (read as you can copy and paste :-) )
+- Comment your code with the source if you adapt existing implementations
 - **No submitting code you don't understand**: Ensure you understand any code you adapt/paste. I reserve the right to quiz you on any code you submit.
 
 #### Required Functions
