@@ -32,13 +32,14 @@ endif
 
 PASSIVE_SO = $(BUILD_DIR)/libshim.so
 ACTIVE_SO = $(BUILD_DIR)/libgotpatch.so
+PLT_SO = $(BUILD_DIR)/libplthook.so
 TESTER = $(BUILD_DIR)/tester
 BYPASS = $(BUILD_DIR)/bypass_syscall
 START_OBJ = $(BUILD_DIR)/start.o
 
-.PHONY: all clean run run-passive run-active run-bypass
+.PHONY: all clean run run-passive run-active run-plt run-bypass
 
-all: $(PASSIVE_SO) $(ACTIVE_SO) $(TESTER) $(BYPASS)
+all: $(PASSIVE_SO) $(ACTIVE_SO) $(PLT_SO) $(TESTER) $(BYPASS)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -47,6 +48,9 @@ $(PASSIVE_SO): $(SRC_DIR)/binding_hook.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(PICFLAGS) $(LDSHARED) -o $@ $< $(LDLIBS)
 
 $(ACTIVE_SO): $(SRC_DIR)/active_hook.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(PICFLAGS) $(LDSHARED) -o $@ $< $(LDLIBS)
+
+$(PLT_SO): $(SRC_DIR)/plt_hook.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(PICFLAGS) $(LDSHARED) -o $@ $< $(LDLIBS)
 
 $(TESTER): $(SRC_DIR)/tester.c | $(BUILD_DIR)
@@ -66,6 +70,9 @@ run-passive: $(PASSIVE_SO) $(TESTER)
 
 run-active: $(ACTIVE_SO) $(TESTER)
 	$(RUNNER) LD_PRELOAD=./$(ACTIVE_SO) ./$(TESTER)
+
+run-plt: $(PLT_SO) $(TESTER)
+	$(RUNNER) LD_PRELOAD=./$(PLT_SO) ./$(TESTER)
 
 run-bypass: $(BYPASS)
 	$(RUNNER) ./$(BYPASS)

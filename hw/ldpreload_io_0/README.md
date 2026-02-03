@@ -6,7 +6,8 @@ This assignment explores two userland interception techniques and one bypass tec
 
 1. **Passive LD_PRELOAD shim**: override `open/open64/openat/unlink/unlinkat` by symbol name.
 2. **Active GOT/PLT patching**: locate the `openat` / `unlinkat` relocations in the main executable and overwrite their GOT entries.
-3. **Syscall bypass**: use **direct syscalls** to write a protected file even when a teacher-provided `hook.so` is preloaded.
+3. **PLT stub patching**: locate the PLT stub for `openat` / `unlinkat` and overwrite its instructions to jump to your detour.
+4. **Syscall bypass**: use **direct syscalls** to write a protected file even when a teacher-provided `hook.so` is preloaded.
 
 **Protected directory**: `/tmp/protected`
 
@@ -31,6 +32,8 @@ Implement a shared library that blocks access to `/tmp/protected/...` by overrid
 
 ### Part 2: `active_hook.c` (Active GOT/PLT Patching)
 
+**Comparison to 3:** this method **overwrites the GOT jump slot** for each symbol. The PLT stub stays intact; it simply reads the new GOT address.
+
 Implement a shared library that patches the main executable’s GOT entries for:
 
 - `openat`
@@ -45,7 +48,46 @@ Implement a shared library that patches the main executable’s GOT entries for:
 - Overwrite the GOT entry with your own detour functions.
 - Deny access to `/tmp/protected/...` similarly to Part 1.
 
-### Part 3: `bypass_syscall.c` (Direct Syscall Bypass)
+**Inspection tips (GOT):**
+
+```bash
+readelf -W -d bin/tester | grep -E 'JMPREL|SYMTAB|STRTAB|PLTRELSZ'
+readelf -W -r bin/tester | grep -E 'JUMP_SLOT'
+readelf -W -s bin/tester | grep -E 'openat|unlinkat'
+```
+
+**Relevant structs (elf.h / link.h):**
+
+- `Elf64_Dyn`, `Elf64_Rela`, `Elf64_Sym`, `Elf64_Phdr`, `struct dl_phdr_info`
+
+### Part 3: `plt_hook.c` (PLT Stub Patching)
+
+**Comparison to 2:** this method **overwrites the PLT stub instructions themselves**. The GOT entry is untouched, but calls never reach it because the PLT code jumps directly to your detour.
+
+Implement a shared library that patches the **PLT stub instructions** for:
+
+- `openat`
+- `unlinkat`
+
+**Requirements:**
+
+- Find the PLT entry for each target symbol.
+- Overwrite the PLT stub instructions to jump directly to your detour.
+- Deny access to `/tmp/protected/...` similarly to Part 1.
+
+**Inspection tips (PLT):**
+
+```bash
+readelf -W -S bin/tester | grep -E '\\.plt'
+readelf -W -r bin/tester | grep -E 'JUMP_SLOT'
+aarch64-linux-gnu-objdump -d -j .plt bin/tester
+```
+
+**Relevant structs (elf.h):**
+
+- `Elf64_Ehdr`, `Elf64_Shdr`, `Elf64_Rela`, `Elf64_Sym`
+
+### Part 4: `bypass_syscall.c` (Direct Syscall Bypass)
 
 Write a **syscall-only** program that creates or overwrites:
 
@@ -82,6 +124,7 @@ This produces:
 
 - `bin/libshim.so`
 - `bin/libgotpatch.so`
+- `bin/libplthook.so`
 - `bin/tester`
 - `bin/bypass_syscall`
 
@@ -99,6 +142,12 @@ make run-passive CROSS_COMPILE=aarch64-linux-gnu-
 
 ```bash
 make run-active CROSS_COMPILE=aarch64-linux-gnu-
+```
+
+### PLT Stub Patch
+
+```bash
+make run-plt CROSS_COMPILE=aarch64-linux-gnu-
 ```
 
 ### Syscall Bypass
