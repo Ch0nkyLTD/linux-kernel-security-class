@@ -54,8 +54,10 @@ These lectures exist as topic files but are not yet assigned to schedule dates:
 | kthreads | kthreads |
 
 ## Knowledge Stats
-- **Functions:** 0 registered (pending bootstrap)
-- **Types/Structs:** 0 registered (pending bootstrap)
-- **Concepts:** 0 registered (pending bootstrap)
-- **Syscalls:** 0 registered (pending bootstrap)
-- **Tools/Techniques:** 0 registered (pending bootstrap)
+- **Functions:** 55 registered
+- **Types/Structs:** 18 registered
+- **Concepts:** 24 registered
+- **Syscalls:** 14 registered
+- **Tools/Techniques:** 8 registered
+- **Total:** 119 entries
+- **Last updated:** 2026-03-17
