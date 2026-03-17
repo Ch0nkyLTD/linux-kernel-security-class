@@ -1,0 +1,44 @@
+[course]
+name = "CY-4973 Linux Kernel Security"
+code = "CY-4973/7790"
+semester = "SPR-2026"
+institution = "WPI"
+
+[paths]
+# All paths are absolute or ~-relative
+repo = "~/teaching/linux-kernel-security-class"
+vault = "~/teaching/linux-malware-course-public"
+lab = "~/teaching/aarch64-linux-qemu-lab"
+assignments = "~/teaching/assignments-2026-spr"
+tone_reference = "~/teaching/mcp_spr_2024/malware-course-public"
+
+[paths.vault_dirs]
+# Relative to [paths].vault
+topics = "ObsidianVault/Lectures/Slides/Topics"
+schedule = "ObsidianVault/Lectures/Slides/SPR-2026"
+diagrams = "ObsidianVault/diagrams"
+imgs = "ObsidianVault/Imgs/tikz"
+
+[paths.repo_dirs]
+# Relative to [paths].repo
+inclass = "inclass"
+hw = "hw"
+lectures = "lectures"
+knowledge = "knowledge"
+
+[diagrams]
+style = "ObsidianVault/diagrams/style/kernel-slide-style.tex"
+build_cmd = "make"
+install_cmd = "make install"
+
+[slides]
+templates = ["Base Slide", "Split Vertical", "Title Slide"]
+separator = "---"
+max_slides = 50
+min_slides = 20
+output_dir = "ObsidianVault/Lectures/Slides/Topics"
+
+[state]
+# Both relative to [paths].repo
+course_state = "course-state.md"
+knowledge_registry = "knowledge"
