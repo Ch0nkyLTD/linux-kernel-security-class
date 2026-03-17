@@ -320,12 +320,13 @@ Obsidian markdown is the primary representation. YAML frontmatter provides machi
 ---
 name: prepare_kernel_cred
 type: function
-introduced_in: kernel-shellcoding
-introduced_date: 2026-03-17
+introduced_in: promote
+introduced_date: 2026-02-10
 scope: mastery
 scope_history:
-  - { lecture: kernel-shellcoding, level: introduced, date: 2026-03-17 }
+  - { lecture: promote, level: introduced, date: 2026-02-10 }
   - { lecture: capstone-kernel, level: used, date: 2026-02-24 }
+  - { lecture: kernel-shellcoding, level: used, date: 2026-03-17 }
 prerequisites:
   - "[[struct_cred]]"
   - "[[task_struct]]"
