@@ -1,0 +1,14 @@
+# Compiled binaries
+raw_privesc
+raw_privesc_solution
+api_privesc
+
+# Kernel module build artifacts
+*.o
+*.ko
+*.mod
+*.mod.c
+*.symvers
+*.order
+.tmp_versions/
+.*.cmd
