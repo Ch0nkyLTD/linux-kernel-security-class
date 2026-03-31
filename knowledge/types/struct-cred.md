@@ -13,6 +13,8 @@ scope_history:
     date: 2026-02-10
   - lecture: kernel-shellcoding
     date: 2026-03-17
+  - lecture: kernel-shellcoding
+    date: 2026-03-20
   - lecture: capstone-kernel
     date: 2026-02-24
 prerequisites:

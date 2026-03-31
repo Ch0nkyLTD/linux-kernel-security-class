@@ -1,10 +1,10 @@
 # Course State — CY-4973 Linux Kernel Security
 
 ## Current Position
-- **Last lecture:** reflective-payloads (2026-03-13)
+- **Last lecture:** kernel-shellcoding (2026-03-20)
 - **Next planned:** TBD
-- **Lectures delivered:** 13 (excluding empty 01-27)
-- **Total slides delivered:** ~715
+- **Lectures delivered:** 14 (excluding empty 01-27)
+- **Total slides delivered:** ~748
 
 ## Lecture History
 
@@ -23,11 +23,11 @@
 | 02-24 | capstone-kernel | 40 | capstone chain, vuln drivers, rootkit architecture | — |
 | 02-27 | kernel-code-injection | 61 | mm_struct, VMA, PTE construction, kernel_clone | — |
 | 03-13 | reflective-payloads | 35 | memfd_create, /dev/shm, dlopen, reflective SO | — |
+| 03-20 | kernel-shellcoding | 34 | direct cred zeroing, pahole, stur xzr, mrs sp_el0 | kernel_shellcode (3 exercises) |
 
 ## Unscheduled Topic Files
 
 These lectures exist as topic files but are not yet assigned to schedule dates:
-- kernel-shellcoding.md (22 slides)
 - kernel-contexts.md
 - process-hiding.md
 - kthreads.md
@@ -52,12 +52,13 @@ These lectures exist as topic files but are not yet assigned to schedule dates:
 | process-management | process-hiding, kernel-contexts |
 | stealth | process-hiding, reflective-payloads, shellcode-loaders |
 | kthreads | kthreads |
+| shellcode | kernel-shellcoding |
 
 ## Knowledge Stats
 - **Functions:** 55 registered
 - **Types/Structs:** 18 registered
-- **Concepts:** 24 registered
+- **Concepts:** 25 registered
 - **Syscalls:** 14 registered
-- **Tools/Techniques:** 8 registered
-- **Total:** 119 entries
-- **Last updated:** 2026-03-17
+- **Tools/Techniques:** 9 registered
+- **Total:** 121 entries
+- **Last updated:** 2026-03-20

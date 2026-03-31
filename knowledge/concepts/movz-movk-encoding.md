@@ -7,6 +7,8 @@ scope: used
 scope_history:
   - lecture: kernel-shellcoding
     date: 2026-03-17
+  - lecture: kernel-shellcoding
+    date: 2026-03-20
   - lecture: armv8-a_crash_course
     date: 2026-01-13
 prerequisites:

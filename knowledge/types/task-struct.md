@@ -21,6 +21,8 @@ scope_history:
     date: 2026-03-17
   - lecture: kthreads
     date: 2026-03-17
+  - lecture: kernel-shellcoding
+    date: 2026-03-20
 prerequisites:
   - (none)
 docs: "https://elixir.bootlin.com/linux/latest/source/include/linux/sched.h"
@@ -35,6 +37,7 @@ The central kernel data structure representing a process or thread. Contains poi
 - privesc.c
 - prochide.c
 - threadinject.c
+- kernel-shellcoding.md (direct cred zeroing via task_struct->cred)
 
 ## See Also
 

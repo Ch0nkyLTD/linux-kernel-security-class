@@ -9,6 +9,8 @@ scope_history:
     date: 2026-01-13
   - lecture: kernel-shellcoding
     date: 2026-03-17
+  - lecture: kernel-shellcoding
+    date: 2026-03-20
 prerequisites:
   - (none)
 docs: ""

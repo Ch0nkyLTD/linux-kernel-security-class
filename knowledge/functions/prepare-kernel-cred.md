@@ -15,6 +15,8 @@ scope_history:
     date: 2026-02-24
   - lecture: kernel-shellcoding
     date: 2026-03-17
+  - lecture: kernel-shellcoding
+    date: 2026-03-20
   - lecture: full-chain-rootkit
     date: 2026-03-17
 prerequisites:
