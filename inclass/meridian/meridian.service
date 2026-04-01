@@ -1,0 +1,16 @@
+[Unit]
+Description=MERIDIAN DEFENSE GROUP Secure Terminal
+After=network.target
+
+[Service]
+Type=simple
+User=analyst
+Group=analyst
+ExecStart=/usr/local/bin/meridian
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
